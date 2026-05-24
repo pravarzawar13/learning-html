@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Playground — Learn by writing</title>
+  <meta name="description" content="A friendly playground to write HTML, see it live, and learn from your mistakes." />
+
+  <!-- Fonts: Fraunces (display) · Hanken Grotesk (UI) · JetBrains Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- HTMLHint (structural error checking). Loaded async + non-blocking so a
+       slow/blocked CDN can never stall the app's own script (app.js). The
+       linter just lights up later once it arrives. -->
+  <script src="https://cdn.jsdelivr.net/npm/htmlhint@1.9.2/dist/htmlhint.min.js" async></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <div class="brand-text">
+        <h1>HTML Playground</h1>
+        <p class="tagline">Write it, see it, learn from it.</p>
+      </div>
+    </div>
+    <button id="toolbox-toggle" class="btn btn-accent" aria-expanded="false" aria-controls="toolbox">
+      🧰 Toolbox
+    </button>
+  </header>
+
+  <main class="workspace">
+    <!-- EDITOR -->
+    <section class="panel panel-editor" aria-label="HTML editor">
+      <div class="panel-head">
+        <h2>✍️ Your HTML</h2>
+        <div class="panel-actions">
+          <button id="format-clear" class="btn btn-ghost" title="Start fresh">Clear</button>
+        </div>
+      </div>
+      <div class="editor-wrap">
+        <div class="gutter" id="gutter" aria-hidden="true">1</div>
+        <textarea
+          id="code"
+          class="code-input"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off"
+          wrap="off"
+          aria-label="Type your HTML here"
+        ></textarea>
+      </div>
+    </section>
+
+    <!-- PREVIEW -->
+    <section class="panel panel-preview" aria-label="Live preview">
+      <div class="panel-head">
+        <h2>👀 Live Preview</h2>
+        <span class="pulse" id="pulse" title="Updates as you type"></span>
+      </div>
+      <iframe
+        id="preview"
+        class="preview-frame"
+        title="Live preview of your HTML"
+        sandbox="allow-scripts allow-forms allow-popups"
+      ></iframe>
+    </section>
+
+    <!-- MISTAKES & TIPS -->
+    <section class="panel panel-report" aria-label="Mistakes and tips">
+      <div class="panel-head">
+        <h2>🔎 Mistakes &amp; Tips</h2>
+        <div class="legend">
+          <span class="chip chip-error">🔴 error</span>
+          <span class="chip chip-warn">🟡 warning</span>
+          <span class="chip chip-tip">🔵 tip</span>
+        </div>
+      </div>
+      <ul id="report" class="report-list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <!-- TOOLBOX DRAWER -->
+  <div id="toolbox" class="toolbox" aria-hidden="true">
+    <div class="toolbox-head">
+      <h2>🧰 Toolbox</h2>
+      <button id="toolbox-close" class="btn btn-ghost" aria-label="Close toolbox">✕</button>
+    </div>
+
+    <div class="toolbox-body">
+      <section class="tb-section">
+        <h3>🚀 Starter examples</h3>
+        <p class="tb-note">Load one and tinker with it.</p>
+        <div id="snippets" class="snippet-grid"></div>
+      </section>
+
+      <section class="tb-section">
+        <h3>📚 Tag cheatsheet</h3>
+        <p class="tb-note">Click a tag to drop an example where your cursor is.</p>
+        <div id="cheatsheet" class="cheat-list"></div>
+      </section>
+    </div>
+  </div>
+  <div id="scrim" class="scrim" hidden></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
